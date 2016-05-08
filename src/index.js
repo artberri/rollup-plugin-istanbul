@@ -14,14 +14,19 @@ export default function (options = {}) {
         instrumenterOptions.esModules = true;
       }
 
+      instrumenterOptions.codeGenerationOptions = instrumenter.codeGenerationOptions || {
+        sourceMap: id,
+        sourceMapWithCode: true
+      };
+
       var instrumenter = new InstrumenterImpl(instrumenterOptions);
 
       code = instrumenter.instrumentSync(code, id);
 
-      return {
-        code,
-        map: { mappings: '' }
-      };
+      var map = instrumenter.lastSourceMap();
+      map = map ? map.toJSON() : { mappings: '' };
+
+      return { code, map };
     }
   };
 }
