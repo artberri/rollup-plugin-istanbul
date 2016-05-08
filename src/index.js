@@ -8,7 +8,10 @@ export default function (options = {}) {
     transform (code, id) {
       if (!filter(id)) return;
 
-      var instrumenter = new (options.instrumenter || istanbul).Instrumenter(options.instrumenterConfig || { esModules: true });
+      var InstrumenterImpl = (options.instrumenter || istanbul).Instrumenter;
+      var instrumenterOptions = options.instrumenterConfig || { esModules: true };
+
+      var instrumenter = new InstrumenterImpl(instrumenterOptions);
 
       code = instrumenter.instrumentSync(code, id);
 
