@@ -9,7 +9,10 @@ export default function (options = {}) {
       if (!filter(id)) return;
 
       var InstrumenterImpl = (options.instrumenter || istanbul).Instrumenter;
-      var instrumenterOptions = options.instrumenterConfig || { esModules: true };
+      var instrumenterOptions = options.instrumenterConfig || { };
+      if (!('esModules' in instrumenterOptions)) {
+        instrumenterOptions.esModules = true;
+      }
 
       var instrumenter = new InstrumenterImpl(instrumenterOptions);
 
