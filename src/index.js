@@ -9,12 +9,12 @@ export default function (options = {}) {
       if (!filter(id)) return;
 
       var InstrumenterImpl = (options.instrumenter || istanbul).Instrumenter;
-      var instrumenterOptions = options.instrumenterConfig || { };
+      var instrumenterOptions = options.instrumenterConfig || {};
       if (!('esModules' in instrumenterOptions)) {
         instrumenterOptions.esModules = true;
       }
 
-      instrumenterOptions.codeGenerationOptions = instrumenter.codeGenerationOptions || {
+      instrumenterOptions.codeGenerationOptions = instrumenterOptions.codeGenerationOptions || {
         sourceMap: id,
         sourceMapWithCode: true
       };
