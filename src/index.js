@@ -8,23 +8,25 @@ export default function (options = {}) {
     transform (code, id) {
       if (!filter(id)) return;
 
-      var InstrumenterImpl = (options.instrumenter || istanbul).Instrumenter;
-      var instrumenterOptions = options.instrumenterConfig || {};
-      if (!('esModules' in instrumenterOptions)) {
-        instrumenterOptions.esModules = true;
+      var instrumenter;
+      var sourceMap = options.sourceMap !== false;
+      var opts = Object.assign({}, options.instrumenterConfig);
+
+      if (sourceMap) {
+        opts.codeGenerationOptions = Object.assign({},
+          opts.codeGenerationOptions || {format: {compact: !opts.noCompact}},
+          {sourceMap: id, sourceMapWithCode: true}
+        );
       }
 
-      instrumenterOptions.codeGenerationOptions = instrumenterOptions.codeGenerationOptions || {
-        sourceMap: id,
-        sourceMapWithCode: true
-      };
-
-      var instrumenter = new InstrumenterImpl(instrumenterOptions);
+      opts.esModules = true;
+      instrumenter = new (options.instrumenter || istanbul).Instrumenter(opts);
 
       code = instrumenter.instrumentSync(code, id);
 
-      var map = instrumenter.lastSourceMap();
-      map = map ? map.toJSON() : { mappings: '' };
+      var map = sourceMap ?
+                instrumenter.lastSourceMap().toJSON() :
+                {mappings: ''};
 
       return { code, map };
     }
