@@ -9,7 +9,7 @@ export default function (options = {}) {
       if (!filter(id)) return;
 
       var instrumenter;
-      var sourceMap = options.sourceMap !== false;
+      var sourceMap = !!options.sourceMap;
       var opts = Object.assign({}, options.instrumenterConfig);
 
       if (sourceMap) {
