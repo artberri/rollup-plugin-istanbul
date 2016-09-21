@@ -53,9 +53,13 @@ An object of options that will be passed to the instrumenter.
 
 Default value:
 
-```
-{ 
-  esModules: true
+```js
+{
+  esModules: true,
+  codeGenerationOptions: {
+    sourceMap: id,
+    sourceMapWithCode: true
+  }
 }
 ```
 
@@ -67,9 +71,9 @@ Can be a replacement for the istanbul library, for example [isparta](https://git
 
 ### Other usage options
 
-`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-preprocessor](https://github.com/showpad/karma-rollup-preprocessor):
+`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-preprocessor](https://github.com/showpad/karma-rollup-preprocessor) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
 
-```
+```js
 // karma.conf.js
 module.exports = function (config) {
   config.set({
@@ -87,14 +91,15 @@ module.exports = function (config) {
           })
         ]
       }
-    }
+    },
+    reporters: ['coverage']
   });
 };
 ```
 
-Going further, this is how you can implement it when you are using babel because you are writting ES2015 code:
+Going further, this is how you can implement it when you are using babel because you are writing ES2015 code:
 
-```
+```js
 // karma.conf.js
 module.exports = function (config) {
   config.set({
@@ -107,20 +112,21 @@ module.exports = function (config) {
     rollupPreprocessor: {
       rollup: {
         plugins: [
+          require('rollup-plugin-istanbul')({
+            exclude: ['test/*.js']
+          }),
           require('rollup-plugin-babel')({
             presets: [
               require('babel-preset-es2015-rollup')
             ]
-          }),
-          require('rollup-plugin-istanbul')({
-            exclude: ['test/*.js']
           })
         ]
       },
       bundle: {
         sourceMap: 'inline'
       }
-    }
+    },
+    reporters: ['coverage']
   });
 };
 ```

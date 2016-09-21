@@ -8,14 +8,27 @@ export default function (options = {}) {
     transform (code, id) {
       if (!filter(id)) return;
 
-      var instrumenter = new (options.instrumenter || istanbul).Instrumenter(options.instrumenterConfig || { esModules: true });
+      var instrumenter;
+      var sourceMap = options.sourceMap !== false;
+      var opts = Object.assign({}, options.instrumenterConfig);
+
+      if (sourceMap) {
+        opts.codeGenerationOptions = Object.assign({},
+          opts.codeGenerationOptions || {format: {compact: !opts.noCompact}},
+          {sourceMap: id, sourceMapWithCode: true}
+        );
+      }
+
+      opts.esModules = true;
+      instrumenter = new (options.instrumenter || istanbul).Instrumenter(opts);
 
       code = instrumenter.instrumentSync(code, id);
 
-      return {
-        code,
-        map: { mappings: '' }
-      };
+      var map = sourceMap ?
+                instrumenter.lastSourceMap().toJSON() :
+                {mappings: ''};
+
+      return { code, map };
     }
   };
 }
