@@ -1,6 +1,10 @@
 # rollup-plugin-istanbul
 
 [![Build Status](https://travis-ci.org/artberri/rollup-plugin-istanbul.svg?branch=master)](https://travis-ci.org/artberri/rollup-plugin-istanbul)
+[![Last version](https://img.shields.io/npm/v/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
+[![Total Downloads](https://img.shields.io/npm/dt/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
+[![Downloads Last Month](https://img.shields.io/npm/dm/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
+[![Dependencies Status](https://david-dm.org/artberri/rollup-plugin-istanbul.svg)](https://david-dm.org/artberri/rollup-plugin-istanbul)
 
 Seamless integration between [Rollup](https://github.com/rollup/rollup) and [Istanbul](https://github.com/gotwarlost/istanbul).
 
