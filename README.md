@@ -117,14 +117,14 @@ module.exports = function (config) {
       'test/*.js': ['rollup']
     },
     rollupPreprocessor: {
-        plugins: [
-            istanbul({
-                exclude: ['test/*.js']
-            }),
-            babel(babelrc())
-        ],
-        format: 'iife',
-        sourceMap: 'inline'
+      plugins: [
+        istanbul({
+          exclude: ['test/*.js']
+        }),
+        babel(babelrc())
+      ],
+      format: 'iife',
+      sourceMap: 'inline'
     },
     reporters: ['coverage']
   });
