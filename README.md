@@ -88,13 +88,11 @@ module.exports = function (config) {
       'test/*.js': ['rollup']
     },
     rollupPreprocessor: {
-      rollup: {
-        plugins: [
-          require('rollup-plugin-istanbul')({
-            exclude: ['test/*.js']
-          })
-        ]
-      }
+      plugins: [
+        require('rollup-plugin-istanbul')({
+          exclude: ['test/*.js']
+        })
+      ]
     },
     reporters: ['coverage']
   });
