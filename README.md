@@ -118,10 +118,10 @@ module.exports = function (config) {
     },
     rollupPreprocessor: {
       plugins: [
+        babel(babelrc()),      
         istanbul({
           exclude: ['test/*.js']
-        }),
-        babel(babelrc())
+        })
       ],
       format: 'iife',
       sourceMap: 'inline'
