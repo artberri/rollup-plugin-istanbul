@@ -75,7 +75,7 @@ Can be a replacement for the istanbul library, for example [isparta](https://git
 
 ### Other usage options
 
-`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-plugin](https://github.com/TrySound/karma-rollup-plugin) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
+`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-preprocessor](https://github.com/jlmakes/karma-rollup-preprocessor) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
 
 ```js
 // karma.conf.js
