@@ -104,9 +104,9 @@ Going further, this is how you can implement it when you are using babel because
 ```js
 // karma.conf.js
 
-var babelrc = require('babelrc-rollup').default,
-    babel = require('rollup-plugin-babel'),
-    istanbul = require('rollup-plugin-istanbul');
+const babel = require('rollup-plugin-babel');
+const babelrc = require('babelrc-rollup').default;
+const istanbul = require('rollup-plugin-istanbul');
 
 module.exports = function (config) {
   config.set({
