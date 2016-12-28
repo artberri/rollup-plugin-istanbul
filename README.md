@@ -123,8 +123,9 @@ module.exports = function (config) {
           exclude: ['test/*.js']
         })
       ],
-      format: 'iife',
-      sourceMap: 'inline'
+      format: 'iife',               // helps prevent naming collisions
+      moduleName: '<your_project>', // required for 'iife' format
+      sourceMap: 'inline'           // sensible for testing
     },
     reporters: ['coverage']
   });
