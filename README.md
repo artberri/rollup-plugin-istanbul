@@ -79,6 +79,8 @@ Can be a replacement for the istanbul library, for example [isparta](https://git
 
 ```js
 // karma.conf.js
+const istanbul = require('rollup-plugin-istanbul');
+
 module.exports = function (config) {
   config.set({
     files: [
@@ -89,7 +91,7 @@ module.exports = function (config) {
     },
     rollupPreprocessor: {
       plugins: [
-        require('rollup-plugin-istanbul')({
+        istanbul({
           exclude: ['test/*.js']
         })
       ]
@@ -103,7 +105,6 @@ Going further, this is how you can implement it when you are using babel because
 
 ```js
 // karma.conf.js
-
 const babel = require('rollup-plugin-babel');
 const babelrc = require('babelrc-rollup').default;
 const istanbul = require('rollup-plugin-istanbul');
