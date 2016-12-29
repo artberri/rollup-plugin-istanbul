@@ -83,12 +83,19 @@ const istanbul = require('rollup-plugin-istanbul');
 
 module.exports = function (config) {
   config.set({
+
     files: [
+      // watch src files for changes but
+      // don't load them into the browser.
+      { pattern: 'src/**/*.js', included: false },
       'test/**/*.js'
     ],
+
     preprocessors: {
+      'src/**/*.js': ['rollup'],
       'test/**/*.js': ['rollup']
     },
+
     rollupPreprocessor: {
       plugins: [
         istanbul({
@@ -96,6 +103,7 @@ module.exports = function (config) {
         })
       ]
     },
+
     reporters: ['coverage']
   });
 };
@@ -111,12 +119,19 @@ const istanbul = require('rollup-plugin-istanbul');
 
 module.exports = function (config) {
   config.set({
+
     files: [
+      // watch src files for changes but
+      // don't load them into the browser.
+      { pattern: 'src/**/*.js', included: false },
       'test/**/*.js'
     ],
+
     preprocessors: {
+      'src/**/*.js': ['rollup'],
       'test/**/*.js': ['rollup']
     },
+
     rollupPreprocessor: {
       plugins: [
         babel(babelrc()),
@@ -128,6 +143,7 @@ module.exports = function (config) {
       moduleName: '<your_project>', // required for 'iife' format
       sourceMap: 'inline'           // sensible for testing
     },
+
     reporters: ['coverage']
   });
 };
