@@ -84,15 +84,15 @@ const istanbul = require('rollup-plugin-istanbul');
 module.exports = function (config) {
   config.set({
     files: [
-      'test/*.js'
+      'test/**/*.js'
     ],
     preprocessors: {
-      'test/*.js': ['rollup']
+      'test/**/*.js': ['rollup']
     },
     rollupPreprocessor: {
       plugins: [
         istanbul({
-          exclude: ['test/*.js']
+          exclude: ['test/**/*.js']
         })
       ]
     },
@@ -112,16 +112,16 @@ const istanbul = require('rollup-plugin-istanbul');
 module.exports = function (config) {
   config.set({
     files: [
-      'test/*.js'
+      'test/**/*.js'
     ],
     preprocessors: {
-      'test/*.js': ['rollup']
+      'test/**/*.js': ['rollup']
     },
     rollupPreprocessor: {
       plugins: [
         babel(babelrc()),
         istanbul({
-          exclude: ['test/*.js']
+          exclude: ['test/**/*.js']
         })
       ],
       format: 'iife',               // helps prevent naming collisions
