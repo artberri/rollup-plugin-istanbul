@@ -149,8 +149,7 @@ module.exports = function (config) {
 };
 ```
 
-Example of implementation with Mocha provided by @piuccio:
-[https://github.com/artberri/rollup-plugin-istanbul/issues/11](https://github.com/artberri/rollup-plugin-istanbul/issues/11)
+See an [Example implementation with Mocha](https://github.com/artberri/rollup-plugin-istanbul/issues/11) provided by [@piuccio](https://github.com/piuccio)
 
 ## License
 
