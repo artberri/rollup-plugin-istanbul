@@ -136,7 +136,10 @@ module.exports = function (config) {
       plugins: [
         babel(babelrc()),
         istanbul({
-          exclude: ['test/**/*.js']
+          exclude: ['test/**/*.js'],
+          instrumenterConfig: {
+            embedSource: true,      // improves line number accuracy
+          },
         })
       ],
       format: 'iife',               // helps prevent naming collisions

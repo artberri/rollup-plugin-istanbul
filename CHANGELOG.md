@@ -1,5 +1,9 @@
 # rollup-plugin-istanbul changelog
 
+## Unreleased
+
+* Update documentation
+
 ## 1.1.0 (2016-09-24)
 
 * Source Map support, thanks to @jellymann
