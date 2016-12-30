@@ -4,6 +4,7 @@
 
 * Update documentation
 * Update wanted `rollup` version to anything < `1.0.0`
+* Update `istanbul` version to fork by @jansoren for better source maps
 
 ## 1.1.0 (2016-09-24)
 
