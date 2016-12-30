@@ -75,27 +75,35 @@ Can be a replacement for the istanbul library, for example [isparta](https://git
 
 ### Other usage options
 
-`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-plugin](https://github.com/TrySound/karma-rollup-plugin) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
+`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-preprocessor](https://github.com/jlmakes/karma-rollup-preprocessor) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
 
 ```js
 // karma.conf.js
+const istanbul = require('rollup-plugin-istanbul');
+
 module.exports = function (config) {
   config.set({
+
     files: [
-      'test/*.js'
+      // watch src files for changes but
+      // don't load them into the browser.
+      { pattern: 'src/**/*.js', included: false },
+      'test/**/*.js'
     ],
+
     preprocessors: {
-      'test/*.js': ['rollup']
+      'src/**/*.js': ['rollup'],
+      'test/**/*.js': ['rollup']
     },
+
     rollupPreprocessor: {
-      rollup: {
-        plugins: [
-          require('rollup-plugin-istanbul')({
-            exclude: ['test/*.js']
-          })
-        ]
-      }
+      plugins: [
+        istanbul({
+          exclude: ['test/**/*.js']
+        })
+      ]
     },
+
     reporters: ['coverage']
   });
 };
@@ -105,36 +113,46 @@ Going further, this is how you can implement it when you are using babel because
 
 ```js
 // karma.conf.js
-
-var babelrc = require('babelrc-rollup').default,
-    babel = require('rollup-plugin-babel'),
-    istanbul = require('rollup-plugin-istanbul');
+const babel = require('rollup-plugin-babel');
+const babelrc = require('babelrc-rollup').default;
+const istanbul = require('rollup-plugin-istanbul');
 
 module.exports = function (config) {
   config.set({
+
     files: [
-      'test/*.js'
+      // watch src files for changes but
+      // don't load them into the browser.
+      { pattern: 'src/**/*.js', included: false },
+      'test/**/*.js'
     ],
+
     preprocessors: {
-      'test/*.js': ['rollup']
+      'src/**/*.js': ['rollup'],
+      'test/**/*.js': ['rollup']
     },
+
     rollupPreprocessor: {
-        plugins: [
-            istanbul({
-                exclude: ['test/*.js']
-            }),
-            babel(babelrc())
-        ],
-        format: 'iife',
-        sourceMap: 'inline'
+      plugins: [
+        babel(babelrc()),
+        istanbul({
+          exclude: ['test/**/*.js'],
+          instrumenterConfig: {
+            embedSource: true,      // improves line number accuracy
+          },
+        })
+      ],
+      format: 'iife',               // helps prevent naming collisions
+      moduleName: '<your_project>', // required for 'iife' format
+      sourceMap: 'inline'           // sensible for testing
     },
+
     reporters: ['coverage']
   });
 };
 ```
 
-Example of implementation with Mocha provided by @piuccio:
-[https://github.com/artberri/rollup-plugin-istanbul/issues/11](https://github.com/artberri/rollup-plugin-istanbul/issues/11)
+See an [Example implementation with Mocha](https://github.com/artberri/rollup-plugin-istanbul/issues/11) provided by [@piuccio](https://github.com/piuccio)
 
 ## License
 
