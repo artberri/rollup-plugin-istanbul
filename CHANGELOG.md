@@ -1,8 +1,10 @@
 # rollup-plugin-istanbul changelog
 
-## 1.0.0 (2016-01-23)
+## 2.0.0 (Unreleased)
 
-* First release
+* Update documentation
+* Upgrade dependencies
+* Switch from istanbul (deprecated) to new instrumenter (istanbul-lib-instrument): https://istanbul.js.org/ (Breaking change)
 
 ## 1.1.0 (2016-09-24)
 
@@ -10,3 +12,7 @@
 * Use rollup targets to build, thanks to @eventualbuddha
 * Update dependencies
 * Update documentation
+
+## 1.0.0 (2016-01-23)
+
+* First release

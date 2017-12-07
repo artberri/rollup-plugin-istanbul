@@ -1,6 +1,6 @@
-var assert = require('assert');
-var rollup = require('rollup');
-var istanbulPlugin = require( '..' );
+let assert = require('assert');
+let rollup = require('rollup');
+let istanbulPlugin = require( '..' );
 
 process.chdir( __dirname );
 
@@ -9,28 +9,30 @@ describe('rollup-plugin-istanbul', function () {
 
   it('transforms code through istanbul instrumenter', function () {
     return rollup.rollup({
-      entry: 'fixtures/main.js',
+      input: 'fixtures/main.js',
       plugins: [ istanbulPlugin() ],
-      external: ['whatever']
+      globals: {
+        whatever: 'whatever'
+      }
     }).then( function ( bundle ) {
-      var generated = bundle.generate();
-
-      var code = generated.code;
-
-      assert.ok(code.indexOf('__cov_') !== -1, code);
+      return bundle.generate({format: 'iife'});
+    }).then(generated => {
+      let code = generated.code;
+      assert.ok(code.indexOf('coverage[path]') !== -1, code);
     });
   });
 
   it('adds the file name properly', function () {
     return rollup.rollup({
-      entry: 'fixtures/main.js',
+      input: 'fixtures/main.js',
       plugins: [ istanbulPlugin() ],
-      external: ['whatever']
+      globals: {
+        whatever: 'whatever'
+      }
     }).then( function ( bundle ) {
-      var generated = bundle.generate();
-
-      var code = generated.code;
-
+      return bundle.generate({format: 'iife'});
+    }).then(generated => {
+      let code = generated.code;
       assert.ok(code.indexOf('fixtures/main.js') !== -1, code);
     });
   });

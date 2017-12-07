@@ -1,13 +1,14 @@
 # rollup-plugin-istanbul
 
 [![Build Status](https://travis-ci.org/artberri/rollup-plugin-istanbul.svg?branch=master)](https://travis-ci.org/artberri/rollup-plugin-istanbul)
+[![Code Climate](https://codeclimate.com/github/artberri/rollup-plugin-istanbul/badges/gpa.svg)](https://codeclimate.com/github/artberri/rollup-plugin-istanbul)
 [![Last version](https://img.shields.io/npm/v/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Total Downloads](https://img.shields.io/npm/dt/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Downloads Last Month](https://img.shields.io/npm/dm/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Dependencies Status](https://david-dm.org/artberri/rollup-plugin-istanbul.svg)](https://david-dm.org/artberri/rollup-plugin-istanbul)
+[![License](https://img.shields.io/npm/l/rollup-plugin-istanbul.svg)](https://github.com/artberri/rollup-plugin-istanbul/blob/master/LICENSE)
 
 Seamless integration between [Rollup](https://github.com/rollup/rollup) and [Istanbul](https://github.com/gotwarlost/istanbul).
-
 
 ## Why?
 
@@ -15,13 +16,11 @@ If you're using Rollup to generate a standalone bundle you will probably need al
 
 That is the reason why rollup-plugin-istanbul exists.
 
-
 ## Installation
 
 ```bash
 npm install --save-dev rollup-plugin-istanbul
 ```
-
 
 ## Usage
 
@@ -75,10 +74,12 @@ Can be a replacement for the istanbul library, for example [isparta](https://git
 
 ### Other usage options
 
-`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-plugin](https://github.com/TrySound/karma-rollup-plugin) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
+`rollup-plugin-istanbul` can be used with karma or other test runners that allow preprocessors. Here you can see how to implement it with Karma with the help of the [karma-rollup-preprocessor](https://github.com/jlmakes/karma-rollup-preprocessor) and [karma-coverage](https://github.com/karma-runner/karma-coverage):
 
 ```js
 // karma.conf.js
+var istanbul = require('rollup-plugin-istanbul');
+
 module.exports = function (config) {
   config.set({
     files: [
@@ -90,7 +91,7 @@ module.exports = function (config) {
     rollupPreprocessor: {
       rollup: {
         plugins: [
-          require('rollup-plugin-istanbul')({
+          istanbul({
             exclude: ['test/*.js']
           })
         ]
@@ -138,4 +139,4 @@ Example of implementation with Mocha provided by @piuccio:
 
 ## License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)

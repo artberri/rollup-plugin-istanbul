@@ -1,5 +1,5 @@
 import { createFilter } from 'rollup-pluginutils';
-import istanbul from 'istanbul';
+import istanbul from 'istanbul-lib-instrument';
 
 export default function (options = {}) {
   const filter = createFilter(options.include, options.exclude);
@@ -8,9 +8,9 @@ export default function (options = {}) {
     transform (code, id) {
       if (!filter(id)) return;
 
-      var instrumenter;
-      var sourceMap = !!options.sourceMap;
-      var opts = Object.assign({}, options.instrumenterConfig);
+      let instrumenter;
+      let sourceMap = !!options.sourceMap;
+      let opts = Object.assign({}, options.instrumenterConfig);
 
       if (sourceMap) {
         opts.codeGenerationOptions = Object.assign({},
@@ -20,13 +20,13 @@ export default function (options = {}) {
       }
 
       opts.esModules = true;
-      instrumenter = new (options.instrumenter || istanbul).Instrumenter(opts);
+      instrumenter = new (options.instrumenter || istanbul).createInstrumenter(opts);
 
       code = instrumenter.instrumentSync(code, id);
 
-      var map = sourceMap ?
-                instrumenter.lastSourceMap().toJSON() :
-                {mappings: ''};
+      let map = sourceMap ?
+        instrumenter.lastSourceMap().toJSON() :
+        {mappings: ''};
 
       return { code, map };
     }
