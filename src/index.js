@@ -8,9 +8,9 @@ export default function (options = {}) {
     transform (code, id) {
       if (!filter(id)) return;
 
-      let instrumenter;
-      let sourceMap = !!options.sourceMap;
-      let opts = Object.assign({}, options.instrumenterConfig);
+      var instrumenter;
+      var sourceMap = !!options.sourceMap;
+      var opts = Object.assign({}, options.instrumenterConfig);
 
       if (sourceMap) {
         opts.codeGenerationOptions = Object.assign({},
@@ -24,7 +24,7 @@ export default function (options = {}) {
 
       code = instrumenter.instrumentSync(code, id);
 
-      let map = sourceMap ?
+      var map = sourceMap ?
         instrumenter.lastSourceMap().toJSON() :
         {mappings: ''};
 
