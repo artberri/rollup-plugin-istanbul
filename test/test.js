@@ -1,6 +1,6 @@
-let assert = require('assert');
-let rollup = require('rollup');
-let istanbulPlugin = require( '..' );
+var assert = require('assert');
+var rollup = require('rollup');
+var istanbulPlugin = require( '..' );
 
 process.chdir( __dirname );
 
@@ -17,7 +17,7 @@ describe('rollup-plugin-istanbul', function () {
     }).then( function ( bundle ) {
       return bundle.generate({format: 'iife'});
     }).then(generated => {
-      let code = generated.code;
+      var code = generated.code;
       assert.ok(code.indexOf('coverage[path]') !== -1, code);
     });
   });
@@ -32,7 +32,7 @@ describe('rollup-plugin-istanbul', function () {
     }).then( function ( bundle ) {
       return bundle.generate({format: 'iife'});
     }).then(generated => {
-      let code = generated.code;
+      var code = generated.code;
       assert.ok(code.indexOf('fixtures/main.js') !== -1, code);
     });
   });
