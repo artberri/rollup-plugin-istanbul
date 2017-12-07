@@ -1,6 +1,6 @@
 # rollup-plugin-istanbul changelog
 
-## 2.0.0 (Unreleased)
+## 2.0.0 (2017-12-07)
 
 * Update documentation
 * Upgrade dependencies
