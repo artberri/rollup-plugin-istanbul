@@ -1,9 +1,9 @@
 {
   "name": "rollup-plugin-istanbul",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Seamless integration between Rollup and Istanbul.",
   "main": "dist/rollup-plugin-istanbul.cjs.js",
-  "jsnext:main": "dist/rollup-plugin-istanbul.es6.js",
+  "jsnext:main": "dist/rollup-plugin-istanbul.es.js",
   "files": [
     "src",
     "dist",
