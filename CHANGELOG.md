@@ -1,5 +1,9 @@
 # rollup-plugin-istanbul changelog
 
+## 2.0.1 (2018-02-12)
+
+* Fix `jsnext:main` entry in `package.json`
+
 ## 2.0.0 (2017-12-07)
 
 * Update documentation
