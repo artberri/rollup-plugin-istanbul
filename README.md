@@ -50,6 +50,18 @@ Can be a minimatch pattern or an array of minimatch patterns. If is omitted or o
 
 Can be a minimatch pattern or an array of minimatch patterns. Files to exclude, commonly the test files.
 
+#### `extensions`
+
+Array of strings that specifies the file extensions to process. default: ['js']
+
+#### `compact`
+
+generate compact code. default: `true`
+
+#### `sourceMap`
+
+produce a source map for the instrumented code. default: `true`
+
 #### `instrumenterConfig`
 
 An object of options that will be passed to the instrumenter.
@@ -59,14 +71,12 @@ Default value:
 ```js
 {
   esModules: true,
-  codeGenerationOptions: {
-    sourceMap: id,
-    sourceMapWithCode: true
-  }
+  compact: true,
+  produceSourceMap: true
 }
 ```
 
-[More info](http://gotwarlost.github.io/istanbul/public/apidocs/classes/Instrumenter.html#method_Instrumenter) about options.
+[More info](https://github.com/istanbuljs/istanbuljs/blob/master/packages/istanbul-lib-instrument/api.md#parameters-1) about options.
 
 #### `instrumenter`
 

@@ -33,15 +33,15 @@
     "lint": "eslint src/index.js test/*.js"
   },
   "dependencies": {
-    "istanbul-lib-instrument": "^1.9.1",
-    "rollup-pluginutils": "^2.0.1"
+    "istanbul-lib-instrument": "^3.3.0",
+    "rollup-pluginutils": "^2.8.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.12.1",
     "mocha": "^4.0.1",
-    "rollup": "^0.52.1",
+    "rollup": "^1.0.0",
     "rollup-plugin-babel": "^3.0.2"
   },
   "repository": {
