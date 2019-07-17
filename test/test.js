@@ -1,6 +1,8 @@
 const assert = require('assert');
 const rollup = require('rollup');
 const istanbulPlugin = require('..');
+const babel = require('rollup-plugin-babel');
+const path = require('path');
 
 process.chdir(__dirname);
 
@@ -16,6 +18,7 @@ describe('rollup-plugin-istanbul', function () {
       .then(bundle =>
         bundle.generate({
           format: 'iife',
+          name: 'test',
           globals: {
             whatever: 'whatever'
           }
@@ -36,6 +39,7 @@ describe('rollup-plugin-istanbul', function () {
       .then(bundle =>
         bundle.generate({
           format: 'iife',
+          name: 'test',
           globals: {
             whatever: 'whatever'
           }
@@ -51,12 +55,13 @@ describe('rollup-plugin-istanbul', function () {
     return rollup
       .rollup({
         input: 'fixtures/main.js',
-        plugins: [istanbulPlugin()]
+        plugins: [babel(), istanbulPlugin({ compact: false })]
       })
       .then(bundle =>
         bundle.generate({
           sourcemap: true,
           format: 'iife',
+          name: 'test',
           globals: {
             whatever: 'whatever'
           }
@@ -64,16 +69,24 @@ describe('rollup-plugin-istanbul', function () {
       )
       .then(generated => {
         const { code, map } = generated.output[0];
-  
-        assert.ok(code.indexOf('coverage[path]') !== -1, code);
-        assert.ok(/(\/|\\\\)fixtures(\/|\\\\)main\.js"/.test(code), code);
-  
-        assert.ok(map.sources[0] === 'fixtures/main.js', code);
-        assert.ok(
-          map.sourcesContent[0] ===
-            'function foo(bar) {\n    if (bar) {\n        whatever.do();\n    } else {\n        whatever.stop();\n    }\n}\n',
-          map
-        );
+
+        assert.deepEqual(map.sources, ['fixtures/main.js']);
+        assert.deepEqual(map.sourcesContent, [
+          'export const foo = bar => {\n  if (bar) {\n    whatever.do();\n  } else {\n    whatever.stop();\n  }\n};\n'
+        ]);
+
+        eval(code);
+
+        const p = path.join(__dirname, 'fixtures' + path.sep + 'main.js');
+        const global = new Function('return this')();
+        const coverage = global.__coverage__[p];
+
+        assert.ok(coverage);
+        assert.equal(coverage.path, p);
+        assert.deepEqual(coverage.inputSourceMap.sources, [p]);
+        assert.deepEqual(coverage.inputSourceMap.sourcesContent, [
+          'export const foo = bar => {\n  if (bar) {\n    whatever.do();\n  } else {\n    whatever.stop();\n  }\n};\n'
+        ]);
       });
   });
 });
