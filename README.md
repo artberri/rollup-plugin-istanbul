@@ -126,8 +126,10 @@ module.exports = function (config) {
             }),
             babel(babelrc())
         ],
-        format: 'iife',
-        sourceMap: 'inline'
+        output: {
+            format: 'iife',
+            sourceMap: 'inline'
+        }
     },
     reporters: ['coverage']
   });
