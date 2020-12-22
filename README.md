@@ -8,7 +8,7 @@
 [![Dependencies Status](https://david-dm.org/artberri/rollup-plugin-istanbul.svg)](https://david-dm.org/artberri/rollup-plugin-istanbul)
 [![License](https://img.shields.io/npm/l/rollup-plugin-istanbul.svg)](https://github.com/artberri/rollup-plugin-istanbul/blob/master/LICENSE)
 
-Seamless integration between [Rollup](https://github.com/rollup/rollup) and [Istanbul](https://github.com/gotwarlost/istanbul).
+Seamless integration between [Rollup](https://github.com/rollup/rollup) and [Istanbul](https://github.com/istanbuljs/istanbuljs).
 
 ## Why?
 
@@ -59,14 +59,14 @@ Default value:
 ```js
 {
   esModules: true,
-  codeGenerationOptions: {
-    sourceMap: id,
-    sourceMapWithCode: true
-  }
+  compact: true,
+  produceSourceMap: true,
+  autoWrap: true,
+  preserveComments: true
 }
 ```
 
-[More info](http://gotwarlost.github.io/istanbul/public/apidocs/classes/Instrumenter.html#method_Instrumenter) about options.
+[More info](https://github.com/istanbuljs/istanbuljs/blob/master/packages/istanbul-lib-instrument/api.md#parameters-1) about options.
 
 #### `instrumenter`
 
@@ -107,9 +107,8 @@ Going further, this is how you can implement it when you are using babel because
 ```js
 // karma.conf.js
 
-var babelrc = require('babelrc-rollup').default,
-    babel = require('rollup-plugin-babel'),
-    istanbul = require('rollup-plugin-istanbul');
+const istanbul = require('rollup-plugin-istanbul');
+const babel = require('@rollup/plugin-babel').babel;
 
 module.exports = function (config) {
   config.set({
@@ -124,21 +123,37 @@ module.exports = function (config) {
             istanbul({
                 exclude: ['test/*.js']
             }),
-            babel(babelrc())
+            babel({ babelHelpers: 'bundled' }),
         ],
         output: {
             format: 'iife',
             sourceMap: 'inline'
         }
     },
-    reporters: ['coverage']
+    reporters: ['coverage'],
+    coverageReporter: {
+      dir: 'coverage',
+      includeAllSources: true,
+      reporters: [
+        {'type': 'text'},
+        {'type': 'html', subdir: 'html'},
+        {'type': 'lcov', subdir: './'}
+      ]
+    },
   });
 };
 ```
 
-Example of implementation with Mocha provided by @piuccio:
-[https://github.com/artberri/rollup-plugin-istanbul/issues/11](https://github.com/artberri/rollup-plugin-istanbul/issues/11)
+Example of implementation provided in [examples folder](examples/karma).
 
 ## License
 
-[MIT](LICENSE)
+[http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2016-2020 Alberto Varela Sánchez & [Contributors](https://github.com/artberri/rollup-plugin-istanbul/graphs/contributors)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

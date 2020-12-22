@@ -1,32 +1,27 @@
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 import istanbul from 'istanbul-lib-instrument';
 
 export default function (options = {}) {
   const filter = createFilter(options.include, options.exclude);
 
   return {
+    name: 'istanbul',
     transform (code, id) {
       if (!filter(id)) return;
 
-      var instrumenter;
-      var sourceMap = !!options.sourceMap;
-      var opts = Object.assign({}, options.instrumenterConfig);
+      let instrumenter;
+      const instrumenterConfig = Object.assign({
+        esModules: true,
+        compact: true,
+        produceSourceMap: true,
+        autoWrap: true,
+        preserveComments: true
+      }, options.instrumenterConfig);
 
-      if (sourceMap) {
-        opts.codeGenerationOptions = Object.assign({},
-          opts.codeGenerationOptions || {format: {compact: !opts.noCompact}},
-          {sourceMap: id, sourceMapWithCode: true}
-        );
-      }
-
-      opts.esModules = true;
-      instrumenter = new (options.instrumenter || istanbul).createInstrumenter(opts);
+      instrumenter = new (options.instrumenter || istanbul).createInstrumenter(instrumenterConfig);
 
       code = instrumenter.instrumentSync(code, id);
-
-      var map = sourceMap ?
-        instrumenter.lastSourceMap().toJSON() :
-        {mappings: ''};
+      const map = instrumenter.lastSourceMap();
 
       return { code, map };
     }

@@ -1,8 +1,8 @@
-var assert = require('assert');
-var rollup = require('rollup');
-var istanbulPlugin = require( '..' );
+const assert = require('assert');
+const rollup = require('rollup');
+const istanbulPlugin = require('..');
 
-process.chdir( __dirname );
+process.chdir(__dirname);
 
 describe('rollup-plugin-istanbul', function () {
   this.timeout(15000);
@@ -10,14 +10,17 @@ describe('rollup-plugin-istanbul', function () {
   it('transforms code through istanbul instrumenter', function () {
     return rollup.rollup({
       input: 'fixtures/main.js',
-      plugins: [ istanbulPlugin() ],
-      globals: {
-        whatever: 'whatever'
-      }
-    }).then( function ( bundle ) {
-      return bundle.generate({format: 'iife'});
+      plugins: [istanbulPlugin()],
+    }).then(bundle => {
+      return bundle.generate({
+        format: 'iife',
+        name: 'test',
+        globals: {
+          whatever: 'whatever'
+        },
+      });
     }).then(generated => {
-      var code = generated.code;
+      const code = generated.output[0].code;
       assert.ok(code.indexOf('coverage[path]') !== -1, code);
     });
   });
@@ -26,14 +29,52 @@ describe('rollup-plugin-istanbul', function () {
     return rollup.rollup({
       input: 'fixtures/main.js',
       plugins: [ istanbulPlugin() ],
-      globals: {
-        whatever: 'whatever'
-      }
-    }).then( function ( bundle ) {
-      return bundle.generate({format: 'iife'});
+    }).then(bundle => {
+      return bundle.generate({
+        format: 'iife',
+        name: 'test',
+        globals: {
+          whatever: 'whatever'
+        },
+      });
     }).then(generated => {
-      var code = generated.code;
+      const code = generated.output[0].code;
       assert.ok(code.indexOf('fixtures/main.js') !== -1, code);
+    });
+  });
+
+  it('transforms code through istanbul instrumenter with source map', function () {
+    return rollup.rollup({
+      input: 'fixtures/main.js',
+      plugins: [ istanbulPlugin({
+        instrumenterConfig: {
+          produceSourceMap: false,
+          compact: false,
+        }
+      }) ],
+    }).then(bundle => {
+      return bundle.generate({
+        sourcemap: true,
+        format: 'iife',
+        name: 'test',
+        globals: {
+          whatever: 'whatever'
+        },
+      });
+    }).then(generated => {
+      const { map } = generated.output[0];
+
+      assert.deepEqual(map.sources, ['fixtures/main.js']);
+      assert.deepEqual(map.sourcesContent, [
+        'export const foo = bar => {\n' +
+        '  if (bar) {\n' +
+        '    whatever.do();\n' +
+        '  } else {\n' +
+        '    whatever.stop();\n' +
+        '  }\n' +
+        '};\n'
+      ]);
+      assert.notEqual(map.mappings, '');
     });
   });
 });

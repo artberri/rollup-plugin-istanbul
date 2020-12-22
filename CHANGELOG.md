@@ -1,5 +1,20 @@
 # rollup-plugin-istanbul changelog
 
+All notable changes to this project will be documented in this file.
+
+## 3.0.0 (2020-12-22)
+
+### Bug Fixes
+
+* Fix sourcemap support ([#21](https://github.com/artberri/rollup-plugin-istanbul/issues/21))
+
+### BREAKING CHANGES
+
+* Node.js 8 is now required
+* The defaults for `autoWrap`, `preserveComments`, `esModules` and `produceSourceMap` are now true.
+* Rollup minimum version is now 1.20.0
+* `istanbul-lib-instrument` version 4.0.3 is now used
+
 ## 2.0.1 (2018-02-12)
 
 * Fix `jsnext:main` entry in `package.json`
