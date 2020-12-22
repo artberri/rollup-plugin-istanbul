@@ -30,9 +30,9 @@
   "scripts": {
     "prebuild": "rm -rf dist/*",
     "build": "rollup -c",
-    "pretest": "npm run build",
     "test": "mocha",
-    "prepublish": "npm run lint && npm test",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm test",
     "lint": "eslint src/index.js test/*.js"
   },
   "dependencies": {

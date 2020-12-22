@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### BREAKING CHANGES
 
-* Node.js 8 is now required
+* Node.js 10 is now required
 * The defaults for `autoWrap`, `preserveComments`, `esModules` and `produceSourceMap` are now true.
 * Rollup minimum version is now 1.20.0
 * `istanbul-lib-instrument` version 4.0.3 is now used
