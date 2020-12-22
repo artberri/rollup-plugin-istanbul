@@ -17,18 +17,30 @@ All notable changes to this project will be documented in this file.
 
 ## 2.0.1 (2018-02-12)
 
+### Bug Fixes
+
 * Fix `jsnext:main` entry in `package.json`
 
 ## 2.0.0 (2017-12-07)
 
+### BREAKING CHANGES
+
+* Switch from istanbul (deprecated) to new instrumenter (istanbul-lib-instrument): https://istanbul.js.org/ (Breaking change)
+
+### Others
+
 * Update documentation
 * Upgrade dependencies
-* Switch from istanbul (deprecated) to new instrumenter (istanbul-lib-instrument): https://istanbul.js.org/ (Breaking change)
 
 ## 1.1.0 (2016-09-24)
 
+### Features
+
 * Source Map support, thanks to @jellymann
 * Use rollup targets to build, thanks to @eventualbuddha
+
+### Others
+
 * Update dependencies
 * Update documentation
 
