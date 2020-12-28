@@ -17,5 +17,16 @@ export default {
       file: './dist/example.cjs.js'
     },
   ],
-  plugins: [babel({ babelHelpers: 'bundled' })],
+  plugins: [babel({
+    babelHelpers: 'bundled',
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          loose: true,
+          modules: false
+        }
+      ]
+    ]
+  })],
 };

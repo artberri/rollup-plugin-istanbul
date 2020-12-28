@@ -20,7 +20,8 @@ export default function (options = {}) {
 
       instrumenter = new (options.instrumenter || istanbul).createInstrumenter(instrumenterConfig);
 
-      code = instrumenter.instrumentSync(code, id);
+      const { version, sources, sourcesContent, names, mappings } = this.getCombinedSourcemap();
+      code = instrumenter.instrumentSync(code, id, { version, sources, sourcesContent, names, mappings });
       const map = instrumenter.lastSourceMap();
 
       return { code, map };

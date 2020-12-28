@@ -1,6 +1,7 @@
 const assert = require('assert');
 const rollup = require('rollup');
-const istanbulPlugin = require('..');
+const babel = require('@rollup/plugin-babel').babel;
+const istanbul = require('..');
 
 process.chdir(__dirname);
 
@@ -10,7 +11,7 @@ describe('rollup-plugin-istanbul', function () {
   it('transforms code through istanbul instrumenter', function () {
     return rollup.rollup({
       input: 'fixtures/main.js',
-      plugins: [istanbulPlugin()],
+      plugins: [istanbul()],
     }).then(bundle => {
       return bundle.generate({
         format: 'iife',
@@ -28,7 +29,7 @@ describe('rollup-plugin-istanbul', function () {
   it('adds the file name properly', function () {
     return rollup.rollup({
       input: 'fixtures/main.js',
-      plugins: [ istanbulPlugin() ],
+      plugins: [ istanbul() ],
     }).then(bundle => {
       return bundle.generate({
         format: 'iife',
@@ -46,12 +47,26 @@ describe('rollup-plugin-istanbul', function () {
   it('transforms code through istanbul instrumenter with source map', function () {
     return rollup.rollup({
       input: 'fixtures/main.js',
-      plugins: [ istanbulPlugin({
-        instrumenterConfig: {
-          produceSourceMap: false,
-          compact: false,
-        }
-      }) ],
+      plugins: [
+        babel({
+          babelHelpers: 'bundled',
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                loose: true,
+                modules: false
+              }
+            ]
+          ]
+        }),
+        istanbul({
+          instrumenterConfig: {
+            produceSourceMap: true,
+            compact: false,
+          }
+        }),
+      ],
     }).then(bundle => {
       return bundle.generate({
         sourcemap: true,
@@ -64,8 +79,8 @@ describe('rollup-plugin-istanbul', function () {
     }).then(generated => {
       const { map } = generated.output[0];
 
-      assert.deepEqual(map.sources, ['fixtures/main.js']);
-      assert.deepEqual(map.sourcesContent, [
+      assert.deepStrictEqual(map.sources, ['fixtures/main.js']);
+      assert.deepStrictEqual(map.sourcesContent, [
         'export const foo = bar => {\n' +
         '  if (bar) {\n' +
         '    whatever.do();\n' +
@@ -74,7 +89,7 @@ describe('rollup-plugin-istanbul', function () {
         '  }\n' +
         '};\n'
       ]);
-      assert.notEqual(map.mappings, '');
+      assert.notStrictEqual(map.mappings, '');
     });
   });
 });

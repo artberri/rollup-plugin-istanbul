@@ -15,8 +15,10 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-babel": "^5.2.2",
     "chai": "^4.2.0",
+    "jsdom": "^16.4.0",
     "karma": "^5.2.3",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^2.0.3",

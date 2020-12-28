@@ -7,3 +7,15 @@ export const example = {
     return a - b;
   }
 };
+
+export const example2 = foo => {
+  if (foo === 1) {
+    return 'one';
+  }
+
+  if (foo === 2) {
+    return 'two';
+  }
+
+  return 'other';
+};

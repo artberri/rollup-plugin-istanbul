@@ -17,6 +17,19 @@ module.exports = (config) => {
 
     rollupPreprocessor: {
       plugins: [
+
+        babel({
+          babelHelpers: 'bundled',
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                loose: true,
+                modules: false
+              }
+            ]
+          ]
+        }),
         istanbul({
           exclude: ['spec/**/*.spec.js'],
           sourceMap: true,
@@ -24,7 +37,6 @@ module.exports = (config) => {
             produceSourceMap: true
           },
         }),
-        babel({ babelHelpers: 'bundled' }),
       ],
       output: {
         format: 'iife',
