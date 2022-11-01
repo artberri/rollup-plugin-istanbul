@@ -15,7 +15,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [14.x, 16.x, 18.x]
+        rollup-version: [^1, ^2, ^3]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,4 +26,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run lint
+    - run: npm install --no-save rollup@${{ matrix.rollup-version }}
     - run: npm test
