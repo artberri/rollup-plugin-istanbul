@@ -15,17 +15,19 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
-		"@rollup/plugin-babel": "^5.2.2",
+		"@babel/core": "^7.19.6",
+		"@rollup/plugin-babel": "^6.0.2",
 		"chai": "^4.2.0",
-		"karma": "^5.2.3",
+		"jsdom": "^20.0.2",
+		"karma": "^6.4.1",
 		"karma-chai": "^0.1.0",
 		"karma-coverage": "^2.0.3",
-		"karma-jsdom-launcher": "^8.0.2",
+		"karma-jsdom-launcher": "^13.0.0",
 		"karma-mocha": "^2.0.1",
 		"karma-mocha-reporter": "^2.2.5",
 		"karma-rollup-preprocessor": "^7.0.5",
-		"mocha": "^8.2.1",
-		"rollup": "^2.35.1",
+		"mocha": "^10.1.0",
+		"rollup": "^3.2.5",
 		"rollup-plugin-istanbul": "file:../.."
 	}
 }
