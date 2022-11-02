@@ -36,6 +36,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --strict-peer-dependencies
-      - run: pnpm publish
+      - name: Publish to NPM
+        run: "pnpm publish --publish-branch $GITHUB_REF_NAME"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
