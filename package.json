@@ -36,8 +36,8 @@
 		"lint": "eslint src/index.js test/*.js"
 	},
 	"dependencies": {
-		"@rollup/pluginutils": "^4.1.0",
-		"istanbul-lib-instrument": "^4.0.3"
+		"@rollup/pluginutils": "^5.0.2",
+		"istanbul-lib-instrument": "^5.2.1"
 	},
 	"devDependencies": {
 		"eslint": "^8.26.0",
@@ -47,7 +47,12 @@
 		"rollup": "^3.2.5"
 	},
 	"peerDependencies": {
-		"rollup": "^1.20.0 || ^2.0.0 || ^3.0.0"
+		"rollup": "^1.20.0||^2.0.0||^3.0.0"
+	},
+	"peerDependenciesMeta": {
+		"rollup": {
+			"optional": true
+		}
 	},
 	"repository": {
 		"type": "git",

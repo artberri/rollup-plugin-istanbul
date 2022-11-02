@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### BREAKING CHANGES
 
 - Dropped support for Node.js 10 and 12
+- `istanbul-lib-instrument` version `^5.2.1` is now used
 
 ## 3.0.0 (2020-12-22)
 
