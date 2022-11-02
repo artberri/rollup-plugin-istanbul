@@ -24,7 +24,7 @@
 		"karma-mocha": "^2.0.1",
 		"karma-mocha-reporter": "^2.2.5",
 		"karma-rollup-preprocessor": "^7.0.5",
-		"mocha": "^8.2.1",
+		"mocha": "^10.1.0",
 		"rollup": "^2.35.1",
 		"rollup-plugin-istanbul": "file:../.."
 	}
