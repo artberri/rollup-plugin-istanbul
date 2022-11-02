@@ -5,7 +5,6 @@
 [![Last version](https://img.shields.io/npm/v/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Total Downloads](https://img.shields.io/npm/dt/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Downloads Last Month](https://img.shields.io/npm/dm/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
-[![Dependencies Status](https://david-dm.org/artberri/rollup-plugin-istanbul.svg)](https://david-dm.org/artberri/rollup-plugin-istanbul)
 [![License](https://img.shields.io/npm/l/rollup-plugin-istanbul.svg)](https://github.com/artberri/rollup-plugin-istanbul/blob/master/LICENSE)
 
 Seamless integration between [Rollup](https://github.com/rollup/rollup) and [Istanbul](https://github.com/istanbuljs/istanbuljs).
@@ -20,6 +19,10 @@ That is the reason why rollup-plugin-istanbul exists.
 
 ```bash
 npm install --save-dev rollup-plugin-istanbul
+# or
+yarn add -D rollup-plugin-istanbul
+# or
+pnpm add -D rollup-plugin-istanbul
 ```
 
 ## Usage
@@ -78,28 +81,26 @@ Can be a replacement for the istanbul library, for example [isparta](https://git
 
 ```js
 // karma.conf.js
-var istanbul = require('rollup-plugin-istanbul');
+var istanbul = require("rollup-plugin-istanbul")
 
 module.exports = function (config) {
-  config.set({
-    files: [
-      'test/*.js'
-    ],
-    preprocessors: {
-      'test/*.js': ['rollup']
-    },
-    rollupPreprocessor: {
-      rollup: {
-        plugins: [
-          istanbul({
-            exclude: ['test/*.js']
-          })
-        ]
-      }
-    },
-    reporters: ['coverage']
-  });
-};
+	config.set({
+		files: ["test/*.js"],
+		preprocessors: {
+			"test/*.js": ["rollup"],
+		},
+		rollupPreprocessor: {
+			rollup: {
+				plugins: [
+					istanbul({
+						exclude: ["test/*.js"],
+					}),
+				],
+			},
+		},
+		reporters: ["coverage"],
+	})
+}
 ```
 
 Going further, this is how you can implement it when you are using babel because you are writing ES2015 code:
@@ -107,41 +108,39 @@ Going further, this is how you can implement it when you are using babel because
 ```js
 // karma.conf.js
 
-const istanbul = require('rollup-plugin-istanbul');
-const babel = require('@rollup/plugin-babel').babel;
+const istanbul = require("rollup-plugin-istanbul")
+const babel = require("@rollup/plugin-babel").babel
 
 module.exports = function (config) {
-  config.set({
-    files: [
-      'test/*.js'
-    ],
-    preprocessors: {
-      'test/*.js': ['rollup']
-    },
-    rollupPreprocessor: {
-        plugins: [
-            istanbul({
-                exclude: ['test/*.js']
-            }),
-            babel({ babelHelpers: 'bundled' }),
-        ],
-        output: {
-            format: 'iife',
-            sourceMap: 'inline'
-        }
-    },
-    reporters: ['coverage'],
-    coverageReporter: {
-      dir: 'coverage',
-      includeAllSources: true,
-      reporters: [
-        {'type': 'text'},
-        {'type': 'html', subdir: 'html'},
-        {'type': 'lcov', subdir: './'}
-      ]
-    },
-  });
-};
+	config.set({
+		files: ["test/*.js"],
+		preprocessors: {
+			"test/*.js": ["rollup"],
+		},
+		rollupPreprocessor: {
+			plugins: [
+				istanbul({
+					exclude: ["test/*.js"],
+				}),
+				babel({ babelHelpers: "bundled" }),
+			],
+			output: {
+				format: "iife",
+				sourceMap: "inline",
+			},
+		},
+		reporters: ["coverage"],
+		coverageReporter: {
+			dir: "coverage",
+			includeAllSources: true,
+			reporters: [
+				{ type: "text" },
+				{ type: "html", subdir: "html" },
+				{ type: "lcov", subdir: "./" },
+			],
+		},
+	})
+}
 ```
 
 Example of implementation provided in [examples folder](examples/karma).
@@ -150,7 +149,7 @@ Example of implementation provided in [examples folder](examples/karma).
 
 [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2016-2020 Alberto Varela Sánchez & [Contributors](https://github.com/artberri/rollup-plugin-istanbul/graphs/contributors)
+Copyright (c) 2016-2022 Alberto Varela Sánchez & [Contributors](https://github.com/artberri/rollup-plugin-istanbul/graphs/contributors)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

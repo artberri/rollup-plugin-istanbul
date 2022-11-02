@@ -1,57 +1,59 @@
 {
-  "name": "rollup-plugin-istanbul",
-  "version": "3.0.0",
-  "description": "Seamless integration between Rollup and Istanbul.",
-  "main": "./dist/rollup-plugin-istanbul.cjs",
-  "exports": {
-    "import": "./dist/rollup-plugin-istanbul.mjs",
-    "require": "./dist/rollup-plugin-istanbul.cjs"
-  },
-  "files": [
-    "src",
-    "dist",
-    "README.md"
-  ],
-  "keywords": [
-    "rollup-plugin",
-    "istanbul",
-    "es2015",
-    "es6",
-    "rollup",
-    "coverage"
-  ],
-  "homepage": "https://github.com/artberri/rollup-plugin-istanbul",
-  "author": {
-    "name": "Alberto Varela",
-    "email": "alberto@berriart.com",
-    "url": "http://www.berriart.com"
-  },
-  "license": "MIT",
-  "scripts": {
-    "prebuild": "rm -rf dist/*",
-    "build": "rollup -c",
-    "test": "mocha",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run lint && npm test",
-    "lint": "eslint src/index.js test/*.js"
-  },
-  "dependencies": {
-    "@rollup/pluginutils": "^4.1.0",
-    "istanbul-lib-instrument": "^4.0.3"
-  },
-  "devDependencies": {
-    "eslint": "^7.16.0",
-    "mocha": "^8.2.1",
-    "rollup": "^3.2.5"
-  },
-  "peerDependencies": {
-    "rollup": "^1.20.0||^2.0.0 || ^3.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/artberri/rollup-plugin-istanbul.git"
-  },
-  "bugs": {
-    "url": "https://github.com/artberri/rollup-plugin-istanbul/issues"
-  }
+	"name": "rollup-plugin-istanbul",
+	"version": "4.0.0",
+	"description": "Seamless integration between Rollup and Istanbul.",
+	"main": "./dist/rollup-plugin-istanbul.cjs",
+	"exports": {
+		"import": "./dist/rollup-plugin-istanbul.mjs",
+		"require": "./dist/rollup-plugin-istanbul.cjs"
+	},
+	"files": [
+		"src",
+		"dist",
+		"README.md"
+	],
+	"keywords": [
+		"rollup-plugin",
+		"istanbul",
+		"es2015",
+		"es6",
+		"rollup",
+		"coverage"
+	],
+	"homepage": "https://github.com/artberri/rollup-plugin-istanbul",
+	"author": {
+		"name": "Alberto Varela",
+		"email": "hello@albertovarela.net",
+		"url": "https://www.albertovarela.net"
+	},
+	"license": "MIT",
+	"scripts": {
+		"prebuild": "rm -rf dist/*",
+		"build": "rollup -c",
+		"test": "mocha",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm run lint && npm test",
+		"lint": "eslint src/index.js test/*.js"
+	},
+	"dependencies": {
+		"@rollup/pluginutils": "^4.1.0",
+		"istanbul-lib-instrument": "^4.0.3"
+	},
+	"devDependencies": {
+		"eslint": "^8.26.0",
+		"eslint-config-prettier": "^8.5.0",
+		"mocha": "^8.2.1",
+		"prettier": "2.7.1",
+		"rollup": "^3.2.5"
+	},
+	"peerDependencies": {
+		"rollup": "^1.20.0 || ^2.0.0 || ^3.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/artberri/rollup-plugin-istanbul.git"
+	},
+	"bugs": {
+		"url": "https://github.com/artberri/rollup-plugin-istanbul/issues"
+	}
 }
