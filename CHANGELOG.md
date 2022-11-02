@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## 4.0.0 (???)
+## 4.0.0 (2022-11-02)
+
+### Bug Fixes
+
+- Fix coverage location ([#24](https://github.com/artberri/rollup-plugin-istanbul/issues/24))
 
 ### BREAKING CHANGES
 
