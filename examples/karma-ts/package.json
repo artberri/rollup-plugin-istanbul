@@ -1,0 +1,36 @@
+{
+	"name": "rollup-plugin-istanbul-karma-example",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"clean": "rm -rf dist/*",
+		"build": "rollup -c",
+		"test": "karma start --single-run"
+	},
+	"author": {
+		"name": "Alberto Varela",
+		"email": "hello@albertovarela.net",
+		"url": "https://www.albertovarela.net"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@rollup/plugin-typescript": "^9.0.2",
+		"@types/chai": "^4.3.3",
+		"@types/mocha": "^10.0.0",
+		"chai": "^4.2.0",
+		"jsdom": "^20.0.2",
+		"karma": "^6.4.1",
+		"karma-chai": "^0.1.0",
+		"karma-coverage": "^2.0.3",
+		"karma-jsdom-launcher": "^13.0.0",
+		"karma-mocha": "^2.0.1",
+		"karma-mocha-reporter": "^2.2.5",
+		"karma-rollup-preprocessor": "^7.0.5",
+		"mocha": "^10.1.0",
+		"rollup": "^3.2.5",
+		"rollup-plugin-istanbul": "file:../..",
+		"tslib": "^2.4.1",
+		"typescript": "^4.8.4"
+	}
+}

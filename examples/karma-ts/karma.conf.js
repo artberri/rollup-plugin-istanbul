@@ -1,5 +1,5 @@
 const istanbul = require("rollup-plugin-istanbul")
-const babel = require("@rollup/plugin-babel").babel
+const typescript = require("@rollup/plugin-typescript")
 
 module.exports = (config) => {
 	config.set({
@@ -14,9 +14,9 @@ module.exports = (config) => {
 		],
 		basePath: "./",
 		frameworks: ["mocha", "chai"],
-		files: [{ pattern: "spec/**/*.spec.js", watched: false }],
+		files: [{ pattern: "spec/**/*.spec.ts", watched: false }],
 		preprocessors: {
-			"spec/**/*.spec.js": ["rollup"],
+			"spec/**/*.spec.ts": ["rollup"],
 		},
 		reporters: ["mocha", "coverage"],
 
@@ -24,9 +24,9 @@ module.exports = (config) => {
 
 		rollupPreprocessor: {
 			plugins: [
-				babel({ babelHelpers: "bundled" }),
+				typescript(),
 				istanbul({
-					exclude: ["spec/**/*.spec.js"],
+					exclude: ["spec/**/*.spec.ts"],
 					sourceMap: true,
 					instrumenterConfig: {
 						produceSourceMap: true,
