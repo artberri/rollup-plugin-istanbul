@@ -10,7 +10,8 @@
 	"files": [
 		"src",
 		"dist",
-		"README.md"
+		"README.md",
+		"CHANGELOG.md"
 	],
 	"keywords": [
 		"rollup-plugin",
