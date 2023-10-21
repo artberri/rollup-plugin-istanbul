@@ -10,17 +10,16 @@ on:
   workflow_dispatch:
     inputs:
       node:
-        description: 'Node version'
+        description: "Node version"
         required: true
-        default: 14.x
+        default: 20.x
         type: choice
         options:
-          - 14.x
           - 16.x
           - 18.x
           - 20.x
       rollup:
-        description: 'Rollup version'
+        description: "Rollup version"
         required: true
         default: ^4
         type: choice
@@ -46,30 +45,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        id: pnpm-install
+        uses: pnpm/action-setup@v2
+        with:
+          version: "8.x"
+          run_install: false
       - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://registry.npmjs.org"
-      - name: Install pnpm
-        id: pnpm-install
-        uses: pnpm/action-setup@v2
-        with:
-          version: "7.x"
-          run_install: false
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: "pnpm"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --strict-peer-dependencies
       - name: Lint code

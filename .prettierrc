@@ -1,6 +1,5 @@
 {
 	"trailingComma": "all",
-	"editorconfig": true,
 	"semi": false,
 	"quoteProps": "consistent",
 	"bracketSpacing": true

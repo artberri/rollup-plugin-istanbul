@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 5.0.0 (2023-10-21)
+
+### Features
+
+- Added support to Rollup v4 ([#54](https://github.com/artberri/rollup-plugin-istanbul/pull/54))
+
+### BREAKING CHANGES
+
+- Dropped support for Node.js 14
+- `istanbul-lib-instrument` version `^6.0.1` is now used
+
 ## 4.0.0 (2022-11-02)
 
 ### Features

@@ -1,6 +1,6 @@
 # rollup-plugin-istanbul
 
-[![Build Status](https://travis-ci.org/artberri/rollup-plugin-istanbul.svg?branch=master)](https://travis-ci.org/artberri/rollup-plugin-istanbul)
+[![Build Status](https://github.com/artberri/rollup-plugin-istanbul/actions/workflows/ci.yml/badge.svg)](https://github.com/artberri/rollup-plugin-istanbul/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ea3da2334fcbff2a07c8/maintainability)](https://codeclimate.com/github/artberri/rollup-plugin-istanbul/maintainability)
 [![Last version](https://img.shields.io/npm/v/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Total Downloads](https://img.shields.io/npm/dt/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
@@ -149,7 +149,7 @@ Example of implementation provided in [examples folder](examples/karma).
 
 [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2016-2022 Alberto Varela Sánchez & [Contributors](https://github.com/artberri/rollup-plugin-istanbul/graphs/contributors)
+Copyright (c) 2016-2023 Alberto Varela Sánchez & [Contributors](https://github.com/artberri/rollup-plugin-istanbul/graphs/contributors)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
