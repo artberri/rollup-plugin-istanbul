@@ -7,6 +7,28 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      node:
+        description: 'Node version'
+        required: true
+        default: 14.x
+        type: choice
+        options:
+          - 14.x
+          - 16.x
+          - 18.x
+          - 20.x
+      rollup:
+        description: 'Rollup version'
+        required: true
+        default: ^4
+        type: choice
+        options:
+          - ^1
+          - ^2
+          - ^3
+          - ^4
 
 jobs:
   build:
@@ -14,8 +36,13 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
         rollup-version: [^1, ^2, ^3]
+        include:
+          - node-version: 18.x
+            rollup-version: ^4
+          - node-version: 20.x
+            rollup-version: ^4
 
     steps:
       - name: Checkout
