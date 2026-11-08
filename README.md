@@ -1,7 +1,6 @@
 # rollup-plugin-istanbul
 
 [![Build Status](https://github.com/artberri/rollup-plugin-istanbul/actions/workflows/ci.yml/badge.svg)](https://github.com/artberri/rollup-plugin-istanbul/actions/workflows/ci.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/ea3da2334fcbff2a07c8/maintainability)](https://codeclimate.com/github/artberri/rollup-plugin-istanbul/maintainability)
 [![Last version](https://img.shields.io/npm/v/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Total Downloads](https://img.shields.io/npm/dt/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)
 [![Downloads Last Month](https://img.shields.io/npm/dm/rollup-plugin-istanbul.svg)](https://www.npmjs.com/package/rollup-plugin-istanbul)

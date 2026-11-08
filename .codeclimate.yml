@@ -1,5 +1,0 @@
-exclude_patterns:
-  - "**/rollup.config.mjs"
-  - "**/karma.conf.js"
-  - "**/test/"
-  - "**/examples/"
