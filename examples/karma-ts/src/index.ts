@@ -1,6 +1,6 @@
 import { sum } from "./sum"
 
-import data from "./data.json" assert { type: "json" }
+import data from "./data.json" with { type: "json" }
 
 interface Example {
 	sum(a: number, b: number): number

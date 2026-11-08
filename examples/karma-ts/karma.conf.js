@@ -32,11 +32,9 @@ module.exports = (config) => {
 					sourceMap: true,
 					instrumenterConfig: {
 						produceSourceMap: true,
-						parserPlugins: [
-							["importAttributes", { deprecatedAssertSyntax: true }],
-						],
+						parserPlugins: ["importAttributes"],
 						generatorOpts: {
-							importAttributesKeyword: "assert",
+							importAttributesKeyword: "with",
 						},
 					},
 				}),
