@@ -1,0 +1,46 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 14
+    groups:
+      dev-dependencies:
+        dependency-type: development
+    versioning-strategy: increase-if-necessary
+
+  - package-ecosystem: npm
+    directories:
+      - /examples/karma
+      - /examples/karma-ts
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 14
+    groups:
+      examples:
+        patterns:
+          - "*"
+    ignore:
+      # karma-chai needs chai's browser build, which chai 5 removed.
+      - dependency-name: chai
+        update-types: [version-update:semver-major]
+      - dependency-name: "@types/chai"
+        update-types: [version-update:semver-major]
+      # TypeScript 7 has no JavaScript API, which @rollup/plugin-typescript
+      # needs.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 14
+    groups:
+      actions:
+        patterns:
+          - "*"
