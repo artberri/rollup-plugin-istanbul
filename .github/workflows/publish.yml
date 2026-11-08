@@ -1,31 +1,68 @@
 name: Publish
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [created]
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  npm:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Trusted publishing: npm exchanges the GitHub OIDC token for a
+      # short-lived publish token, so no NPM_TOKEN is needed.
+      id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install pnpm
-        id: pnpm-install
-        uses: pnpm/action-setup@v4
+        uses: actions/checkout@v7
         with:
-          version: 9
-          run_install: false
-      - name: Setup Node v20
-        uses: actions/setup-node@v4
+          persist-credentials: false
+      - name: Install Node.js, pnpm and npm from .prototools
+        uses: moonrepo/setup-toolchain@v0
         with:
-          node-version: "22.x"
-          registry-url: "https://registry.npmjs.org"
-          cache: "pnpm"
+          auto-install: true
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --strict-peer-dependencies
-      - name: Publish to NPM
-        run: pnpm publish --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # `prepack` runs the checks, the build and the tests. Staged: the version
+      # stays unpublished until a maintainer approves it on npmjs.com or with
+      # `npm stage approve <stage-id>`.
+      - name: Stage on npm
+        run: npm stage publish
+
+  jsr:
+    # JSR versions can't be deleted, so only publish once the checks, the
+    # build, the tests and npm staging have succeeded.
+    needs: npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # JSR authenticates GitHub Actions through OIDC, linked in the package
+      # settings on jsr.io.
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install Node.js, pnpm and npm from .prototools
+        uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
+      - name: Check jsr.json and package.json versions match
+        run: |
+          node -e "
+            const npm = require('./package.json').version
+            const jsr = require('./jsr.json').version
+            if (npm !== jsr) {
+              console.error('Version mismatch: package.json ' + npm + ', jsr.json ' + jsr)
+              process.exit(1)
+            }
+          "
+      # JSR resolves the plugin's bare imports from node_modules.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --strict-peer-dependencies
+      - name: Publish to JSR
+        run: npx jsr@0.14.3 publish

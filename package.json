@@ -51,11 +51,11 @@
 		"prebuild": "rm -rf dist/*",
 		"build": "rollup -c",
 		"test": "node --test test/plugin.test.js test/dist.test.js",
-		"prepare": "pnpm run build",
-		"prepublishOnly": "pnpm run check && pnpm test",
-		"check": "oxlint --deny-warnings && oxfmt --check",
 		"lint": "oxlint --deny-warnings",
-		"format": "oxfmt"
+		"format": "oxfmt",
+		"check": "oxlint --deny-warnings && oxfmt --check",
+		"prepare": "pnpm run build",
+		"prepack": "pnpm run check && pnpm run build && pnpm test"
 	},
 	"dependencies": {
 		"@rollup/pluginutils": "^5.5.1",
