@@ -1,6 +1,6 @@
 {
 	"name": "rollup-plugin-istanbul",
-	"version": "5.0.1",
+	"version": "6.0.0",
 	"description": "Seamless integration between Rollup and Istanbul.",
 	"keywords": [
 		"coverage",

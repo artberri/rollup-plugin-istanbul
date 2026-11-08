@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## X.X.X (YYYY-MM-DD)
+## 6.0.0 (2026-11-08)
 
 ### Features
 
-- Ship TypeScript types for both the ES module and CommonJS builds
+- Ship TypeScript types for both the ES module and CommonJS builds ([#66](https://github.com/artberri/rollup-plugin-istanbul/issues/66))
 - Publish to [JSR](https://jsr.io/@artberri/rollup-plugin-istanbul) as `@artberri/rollup-plugin-istanbul`
 
 ### BREAKING CHANGES
