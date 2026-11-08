@@ -2,7 +2,9 @@ name: Publish
 
 on:
   release:
-    types: [created]
+    # `published` also fires when a draft release is published; `created`
+    # doesn't fire for drafts at all.
+    types: [published]
 
 permissions:
   contents: read

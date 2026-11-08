@@ -92,7 +92,7 @@ Enforced by oxfmt (`.oxfmtrc.json`) and oxlint (`.oxlintrc.json`):
   examples and GitHub Actions, with a 14-day cooldown. It doesn't update
   `.prototools`.
 - Releases are published by `.github/workflows/publish.yml` when a GitHub
-  release is created. It stages the version on npm with trusted publishing
+  release is published (directly, or from a draft). It stages the version on npm with trusted publishing
   (`npm stage publish`; a maintainer approves it on npmjs.com), and `prepack`
   runs the checks, the build and the tests first. Then it publishes the
   source to JSR, which can't be undone. Bump the version in both
