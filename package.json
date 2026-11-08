@@ -2,6 +2,7 @@
 	"name": "rollup-plugin-istanbul",
 	"version": "5.0.1",
 	"description": "Seamless integration between Rollup and Istanbul.",
+	"type": "module",
 	"main": "./dist/rollup-plugin-istanbul.cjs",
 	"exports": {
 		"import": "./dist/rollup-plugin-istanbul.mjs",
@@ -26,7 +27,7 @@
 	"scripts": {
 		"prebuild": "rm -rf dist/*",
 		"build": "rollup -c",
-		"test": "mocha",
+		"test": "node --test test/plugin.test.js test/dist.test.js",
 		"prepare": "npm run build",
 		"prepublishOnly": "npm run check && npm test",
 		"check": "biome check"
@@ -37,7 +38,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.3",
-		"mocha": "^10.7.3",
 		"rollup": "^4.24.0"
 	},
 	"peerDependencies": {
