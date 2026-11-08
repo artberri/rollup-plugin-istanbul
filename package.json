@@ -51,8 +51,8 @@
 		"prebuild": "rm -rf dist/*",
 		"build": "rollup -c",
 		"test": "node --test test/plugin.test.js test/dist.test.js",
-		"prepare": "npm run build",
-		"prepublishOnly": "npm run check && npm test",
+		"prepare": "pnpm run build",
+		"prepublishOnly": "pnpm run check && pnpm test",
 		"check": "oxlint --deny-warnings && oxfmt --check",
 		"lint": "oxlint --deny-warnings",
 		"format": "oxfmt"
@@ -76,5 +76,6 @@
 	},
 	"engines": {
 		"node": ">=18"
-	}
+	},
+	"packageManager": "pnpm@12.18.0"
 }
