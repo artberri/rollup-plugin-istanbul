@@ -27,14 +27,25 @@
 	"files": [
 		"src",
 		"dist",
+		"index.d.ts",
+		"index.d.cts",
 		"README.md",
 		"CHANGELOG.md"
 	],
 	"type": "module",
 	"main": "./dist/rollup-plugin-istanbul.cjs",
+	"types": "./index.d.ts",
 	"exports": {
-		"import": "./dist/rollup-plugin-istanbul.mjs",
-		"require": "./dist/rollup-plugin-istanbul.cjs"
+		".": {
+			"import": {
+				"types": "./index.d.ts",
+				"default": "./dist/rollup-plugin-istanbul.mjs"
+			},
+			"require": {
+				"types": "./index.d.cts",
+				"default": "./dist/rollup-plugin-istanbul.cjs"
+			}
+		}
 	},
 	"scripts": {
 		"prebuild": "rm -rf dist/*",
