@@ -1,0 +1,13 @@
+{
+	"$schema": "https://jsr.io/schema/config-file.v1.json",
+	"name": "@artberri/rollup-plugin-istanbul",
+	"version": "5.0.1",
+	"license": "MIT",
+	"exports": "./src/index.js",
+	"imports": {
+		"rollup": "npm:rollup@^4"
+	},
+	"publish": {
+		"include": ["src", "index.d.ts", "README.md", "LICENSE", "CHANGELOG.md"]
+	}
+}

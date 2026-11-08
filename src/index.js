@@ -1,3 +1,4 @@
+// @ts-self-types="../index.d.ts"
 import { createFilter } from "@rollup/pluginutils"
 import istanbul from "istanbul-lib-instrument"
 
