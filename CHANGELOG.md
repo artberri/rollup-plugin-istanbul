@@ -4,10 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ## X.X.X (YYYY-MM-DD)
 
+### Features
+
+- Ship TypeScript types for both the ES module and CommonJS builds
+- Publish to [JSR](https://jsr.io/@artberri/rollup-plugin-istanbul) as `@artberri/rollup-plugin-istanbul`
+
+### BREAKING CHANGES
+
+- Dropped support for Rollup 1 and 2: Rollup 3 or 4 is now required
+
 ### Others
 
-- Replace Eslint and Prettier with Biome
-- Update examples
+- Replace ESLint and Prettier with oxlint and oxfmt
+- Replace Mocha with the Node.js test runner, and test on Node.js 18 to 26
+- Publish to npm with staged trusted publishing and provenance
+- Pin Node.js, pnpm and npm with proto (`.prototools`) and add Dependabot
+- Update examples, and switch the TypeScript example from import assertions to
+  import attributes
 - Upgrade dependencies
 
 ## 5.0.0 (2023-10-21)

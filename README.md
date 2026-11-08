@@ -24,6 +24,16 @@ yarn add -D rollup-plugin-istanbul
 pnpm add -D rollup-plugin-istanbul
 ```
 
+Requires Rollup 3 or 4 and Node.js 18 or later. TypeScript types are included.
+
+It is also published on [JSR](https://jsr.io/@artberri/rollup-plugin-istanbul) as `@artberri/rollup-plugin-istanbul`. Installed from there, import it from `@artberri/rollup-plugin-istanbul` instead of `rollup-plugin-istanbul`:
+
+```bash
+deno add jsr:@artberri/rollup-plugin-istanbul
+# or
+npx jsr add @artberri/rollup-plugin-istanbul
+```
+
 ## Usage
 
 ```js
