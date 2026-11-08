@@ -21,7 +21,10 @@ plugin that instruments code with Istanbul for coverage reporting.
   plugin via `file:../..` and are ignored by the linter and formatter. Keep
   them on chai 4 (karma-chai needs chai's browser build, removed in chai 5)
   and TypeScript 6 (`@rollup/plugin-typescript` needs TypeScript's JavaScript
-  API, which TypeScript 7 doesn't have).
+  API, which TypeScript 7 doesn't have). Their lockfiles record the plugin's
+  own `package.json`, so after changing its dependencies or peer range, run
+  `pnpm install --lockfile-only` in each example, or CI's frozen install
+  fails.
 - `jsr.json`: JSR package config. Its `version` must match `package.json`.
 
 ## Commands

@@ -1132,7 +1132,7 @@ packages:
     resolution: {directory: ../.., type: directory}
     engines: {node: '>=18'}
     peerDependencies:
-      rollup: ^4.0.0
+      rollup: ^3.0.0 || ^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
